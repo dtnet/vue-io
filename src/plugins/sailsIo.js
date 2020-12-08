@@ -2,7 +2,7 @@ const socketIOClient = require('socket.io-client')
 const sailsIOClient = require('sails.io.js')
 const io = sailsIOClient(socketIOClient)
 
-import {requestConfig} from '@/settings'
+import {requestConfig} from '../../config/settings'
 io.sails.url = requestConfig.baseUrl
 export function get(url) {
     return new Promise((resolve, reject) => {
