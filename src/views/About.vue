@@ -1,5 +1,21 @@
+
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div>
+
   </div>
 </template>
+
+<script>
+import {get} from '@/plugins/sailsIo'
+export default {
+  created() {
+    get('/user').then(res=>{
+      console.log(res, '<----<<<About.vue-13')
+    })
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
