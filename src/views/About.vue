@@ -9,9 +9,9 @@
 import {get} from '@/plugins/sailsIo'
 export default {
   created() {
-    get('/user').then(res=>{
-      console.log(res, '<----<<<About.vue-13')
-    })
+get('test').then(res=>{
+  console.log(res, '<----<<<About.vue-13')
+})
   }
 }
 </script>

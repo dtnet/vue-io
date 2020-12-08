@@ -1,27 +1,36 @@
-const socketIOClient = require('socket.io-client');
-const  sailsIOClient = require('sails.io.js');
+const socketIOClient = require('socket.io-client')
+const sailsIOClient = require('sails.io.js')
+const io = sailsIOClient(socketIOClient)
+
 import {requestConfig} from '@/settings'
-const io = sailsIOClient(socketIOClient);
-io.sails.url=requestConfig.baseUrl
-export function get(api, params) {
-    return new Promise((resolve,reject)=>{
-        io.socket.get(api,params,(data,JWB)=>{
-            if(!data){
-                return reject(JWB)
+io.sails.url = requestConfig.baseUrl
+export function get(url) {
+    return new Promise((resolve, reject) => {
+        io.socket.get(`/${url}`, (resData, jwres) => {
+            if (!resData) {
+               return  reject(jwres)
+            } else {
+                return  resolve(resData)
             }
-            return resolve(data)
-
         })
     })
 }
-export function post(api, params) {
-    return new Promise((resolve,reject)=>{
-        io.socket.post(api,params,(data,JWB)=>{
-            if(!data){
-                return reject(JWB)
-            }
+export function on(mb) {
+    return new Promise(resolve => {
+        io.socket.on(mb, data => {
             return resolve(data)
-
         })
     })
 }
+export function post(url, data) {
+    return new Promise((resolve, reject) => {
+        io.socket.post(url, data, (resData, jwres) => {
+            if (resData) {
+                resolve()
+            } else {
+                reject(jwres)
+            }
+        })
+    })
+}
+
