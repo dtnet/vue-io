@@ -1,6 +1,6 @@
 module.exports = {
 
     requestConfig:{
-        baseUrl:'https://api.tiangecai.com'
+        //baseUrl:'https://api.tiangecai.com'
     }
 }
